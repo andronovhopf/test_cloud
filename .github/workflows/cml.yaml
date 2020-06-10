@@ -20,9 +20,9 @@ jobs:
           docker-machine create \
               --driver amazonec2 \
               --amazonec2-instance-type t2.micro \
-              --amazonec2-region us-east-1 \
-              --amazonec2-zone f \
-              --amazonec2-vpc-id vpc-06bc773d85a0a04f7 \
+              --amazonec2-region us-east-2 \
+              --amazonec2-zone a \
+              --amazonec2-vpc-id vpc-76f1f01e \
               --amazonec2-ssh-user ubuntu \
               $MACHINE
 
