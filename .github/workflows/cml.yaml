@@ -41,8 +41,6 @@ jobs:
             -e RUNNER_REPO=https://github.com/iterative/cml_base_case \
            dvcorg/cml-cloud-runner && \
 
-          sleep 20 && echo "Deployed $MACHINE"
-          ) || (echo y | docker-machine rm $MACHINE && exit 1)
 
   train:
     needs: deploy-cloud-runner
