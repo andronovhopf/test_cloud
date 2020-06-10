@@ -40,6 +40,8 @@ jobs:
             -e repo_token=$repo_token \
             -e RUNNER_REPO=https://github.com/iterative/cml_base_case \
            dvcorg/cml-cloud-runner && \
+               sleep 2 && echo "Deployed $MACHINE"
+          ) 
 
 
   train:
