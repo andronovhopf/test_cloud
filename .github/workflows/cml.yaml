@@ -38,10 +38,10 @@ jobs:
             -e DOCKER_MACHINE=${MACHINE} \
             -e RUNNER_LABELS=cml \
             -e repo_token=$repo_token \
-            -e RUNNER_REPO=https://github.com/iterative/cml_base_case \
+            -e RUNNER_REPO=https://github.com/andronovhopf/test_cloud \
            dvcorg/cml-cloud-runner && \
-               sleep 2 && echo "Deployed $MACHINE"
-          ) 
+               sleep 20 && echo "Deployed $MACHINE"
+          ) || (echo y | docker-machine rm $MACHINE && exit 1)
 
 
   train:
