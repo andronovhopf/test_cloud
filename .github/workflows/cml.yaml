@@ -55,6 +55,7 @@ jobs:
         env:
           repo_token: ${{ secrets.REPO_TOKEN }} 
         run: |
+          apt-udate
           apt-get install -y python3 python3-pip
           pip3 install --upgrade pip
           update-alternatives --install /usr/bin/python python $(which python3) 10
