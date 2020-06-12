@@ -32,7 +32,7 @@ jobs:
           docker-machine ssh $MACHINE "sudo mkdir -p /docker_machine && sudo chmod 777 /docker_machine" && \
           docker-machine scp -r -q ~/.docker/machine/ $MACHINE:/docker_machine && \
 
-          docker run --name runner --runtime "nvidia" -d \
+          docker run --name --gpus all -d \
             -v /docker_machine/machine:/root/.docker/machine \
             -e RUNNER_IDLE_TIMEOUT=120 \
             -e DOCKER_MACHINE=${MACHINE} \
