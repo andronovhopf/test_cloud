@@ -19,7 +19,7 @@ jobs:
           MACHINE="CML-$(openssl rand -hex 12)"
           docker-machine create \
               --driver amazonec2 \
-              --amazonec2-instance-type t2.micro \
+              --amazonec2-instance-type g3s.xlarge \
               --amazonec2-region us-east-2 \
               --amazonec2-zone a \
               --amazonec2-vpc-id vpc-76f1f01e \
@@ -38,8 +38,9 @@ jobs:
             -e DOCKER_MACHINE=${MACHINE} \
             -e RUNNER_LABELS=cml \
             -e repo_token=$repo_token \
+            -e NVIDIA_VISIBLE_DEVICES=all \
             -e RUNNER_REPO=https://github.com/andronovhopf/test_cloud \
-           dvcorg/cml-py3-cloud-runner && \
+           dvcorg/cml-gpu-py3-cloud-runner && \
                sleep 20 && echo "Deployed $MACHINE"
           ) || (echo y | docker-machine rm $MACHINE && exit 1)
 
@@ -55,9 +56,4 @@ jobs:
         env:
           repo_token: ${{ secrets.REPO_TOKEN }} 
         run: |
-          pip install -r requirements.txt
-          python train.py
-        
-          cat metrics.txt >> report.md
-          cml-publish confusion_matrix.png --md >> report.md
-          cml-send-comment report.md
+          nvidia-smi
