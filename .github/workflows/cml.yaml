@@ -16,9 +16,6 @@ jobs:
         run: |
           echo "Deploying..."
 
-          apt-get install nvidia-docker2
-          systemctl restart docker
-
           MACHINE="CML-$(openssl rand -hex 12)"
           docker-machine create \
               --driver amazonec2 \
