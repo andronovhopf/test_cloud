@@ -22,7 +22,7 @@ jobs:
 
           docker-machine create \
             --driver amazonec2 \
-            --amazonec2-instance-type p2.xlarge \
+            --amazonec2-instance-type g4dn.4xlarge \
             --amazonec2-vpc-id vpc-76f1f01e \
             --amazonec2-region us-east-2 \
             --amazonec2-zone a \
