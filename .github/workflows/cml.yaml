@@ -36,12 +36,6 @@ jobs:
           (
           docker-machine ssh $MACHINE "sudo mkdir -p /docker_machine && sudo chmod 777 /docker_machine" && \
           docker-machine scp -r -q ~/.docker/machine/ $MACHINE:/docker_machine && \
-
-          docker-machine ssh $MACHINE "sudo apt update && sudo apt install -y ubuntu-drivers-common && sudo ubuntu-drivers autoinstall" && \
-
-          docker-machine restart $MACHINE && \
-          eval "$(docker-machine env --shell sh $MACHINE)" && \
-
           docker run --name runner --gpus all -d \
             -v /docker_machine/machine:/root/.docker/machine \
             -e DOCKER_MACHINE=$MACHINE \
